@@ -11,10 +11,7 @@ int main(void)
 	while (1) {
 		//Toggle Blue LED
 		gpio_toggle_pin_level(BLUELED);
-		
-		
-		
-				
+						
 		// delay
 		delay_ms(1000);
 	}
