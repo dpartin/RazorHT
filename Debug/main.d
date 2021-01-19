@@ -91,7 +91,14 @@ main.d main.o: .././main.c ../atmel_start.h ../driver_init.h \
  ../hal/include/hal_delay.h ../hal/include/hpl_irq.h \
  ../hal/include/hpl_reset.h ../hal/include/hpl_sleep.h \
  ../hal/include/hal_init.h ../hal/include/hpl_init.h \
- ../hal/include/hal_io.h ../hal/include/hal_sleep.h
+ ../hal/include/hal_io.h ../hal/include/hal_sleep.h \
+ ../hal/include/hal_ext_irq.h ../hal/include/hpl_ext_irq.h \
+ ../hal/include/hal_usart_sync.h ../hal/include/hal_io.h \
+ ../hal/include/hpl_usart_sync.h ../hal/include/hpl_usart.h \
+ ../hal/include/hal_i2c_m_sync.h ../hal/include/hpl_i2c_m_sync.h \
+ ../hal/include/hal_spi_m_sync.h ../hal/include/hpl_spi_m_sync.h \
+ ../hal/include/hpl_spi.h ../hal/utils/include/utils.h \
+ ../hal/include/hpl_spi_sync.h
 
 ../atmel_start.h:
 
@@ -330,3 +337,29 @@ C:\Program\ Files\ (x86)\Atmel\Studio\7.0\Packs\atmel\SAMD21_DFP\1.3.395\samd21a
 ../hal/include/hal_io.h:
 
 ../hal/include/hal_sleep.h:
+
+../hal/include/hal_ext_irq.h:
+
+../hal/include/hpl_ext_irq.h:
+
+../hal/include/hal_usart_sync.h:
+
+../hal/include/hal_io.h:
+
+../hal/include/hpl_usart_sync.h:
+
+../hal/include/hpl_usart.h:
+
+../hal/include/hal_i2c_m_sync.h:
+
+../hal/include/hpl_i2c_m_sync.h:
+
+../hal/include/hal_spi_m_sync.h:
+
+../hal/include/hpl_spi_m_sync.h:
+
+../hal/include/hpl_spi.h:
+
+../hal/utils/include/utils.h:
+
+../hal/include/hpl_spi_sync.h:
