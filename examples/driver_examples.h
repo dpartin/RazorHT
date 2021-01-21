@@ -12,7 +12,13 @@
 extern "C" {
 #endif
 
+void EXTERNAL_IRQ_0_example(void);
+
 void USART_0_example(void);
+
+void I2C_0_example(void);
+
+void EDBG_UART_example(void);
 
 void delay_example(void);
 
