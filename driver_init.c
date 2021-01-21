@@ -13,6 +13,29 @@
 #include <hpl_gclk_base.h>
 #include <hpl_pm_base.h>
 
+struct usart_sync_descriptor USART_0;
+
+void USART_0_PORT_init(void)
+{
+
+	gpio_set_pin_function(PA10, PINMUX_PA10C_SERCOM0_PAD2);
+
+	gpio_set_pin_function(PA11, PINMUX_PA11C_SERCOM0_PAD3);
+}
+
+void USART_0_CLOCK_init(void)
+{
+	_pm_enable_bus_clock(PM_BUS_APBC, SERCOM0);
+	_gclk_enable_channel(SERCOM0_GCLK_ID_CORE, CONF_GCLK_SERCOM0_CORE_SRC);
+}
+
+void USART_0_init(void)
+{
+	USART_0_CLOCK_init();
+	usart_sync_init(&USART_0, SERCOM0, (void *)NULL);
+	USART_0_PORT_init();
+}
+
 void delay_driver_init(void)
 {
 	delay_init(SysTick);
@@ -42,6 +65,8 @@ void system_init(void)
 	gpio_set_pin_direction(BLUELED, GPIO_DIRECTION_OUT);
 
 	gpio_set_pin_function(BLUELED, GPIO_PIN_FUNCTION_OFF);
+
+	USART_0_init();
 
 	delay_driver_init();
 }

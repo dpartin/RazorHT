@@ -39,7 +39,7 @@
  *
  * \acme_license_stop
  *
- * Project: head tracker
+ * Project: RazorHT
  * Target:  ATSAMD21G18A 
  *
  **/

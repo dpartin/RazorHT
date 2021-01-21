@@ -1,5 +1,5 @@
 format_version: '2'
-name: My Project
+name: RazorHT
 versions:
   api: '1.0'
   backend: 1.8.491
@@ -26,10 +26,10 @@ drivers:
     functionality: System
     api: HAL:HPL:GCLK
     configuration:
-      $input: 48005120
-      $input_id: Digital Frequency Locked Loop (DFLL48M)
-      RESERVED_InputFreq: 48005120
-      RESERVED_InputFreq_id: Digital Frequency Locked Loop (DFLL48M)
+      $input: 400000
+      $input_id: External Crystal Oscillator 0.4-32MHz (XOSC)
+      RESERVED_InputFreq: 400000
+      RESERVED_InputFreq_id: External Crystal Oscillator 0.4-32MHz (XOSC)
       _$freq_output_Generic clock generator 0: 48005120
       _$freq_output_Generic clock generator 1: 32768
       _$freq_output_Generic clock generator 2: 400000
@@ -150,6 +150,55 @@ drivers:
           external: false
           external_frequency: 0
         configuration: {}
+  USART_0:
+    user_label: USART_0
+    definition: Atmel:SAMD21_Drivers:0.0.1::SAMD21G18A-MF::SERCOM0::driver_config_definition::UART::HAL:Driver:USART.Sync
+    functionality: USART
+    api: HAL:Driver:USART_Sync
+    configuration:
+      usart_advanced: false
+      usart_arch_clock_mode: USART with internal clock
+      usart_arch_cloden: false
+      usart_arch_dbgstop: Keep running
+      usart_arch_dord: LSB is transmitted first
+      usart_arch_enc: No encoding
+      usart_arch_fractional: 0
+      usart_arch_ibon: false
+      usart_arch_lin_slave_enable: Disable
+      usart_arch_runstdby: false
+      usart_arch_sampa: 7-8-9 (3-4-5 8-bit over-sampling)
+      usart_arch_sampr: 16x arithmetic
+      usart_arch_sfde: false
+      usart_baud_rate: 115200
+      usart_character_size: 8 bits
+      usart_parity: No parity
+      usart_rx_enable: true
+      usart_stop_bit: One stop bit
+      usart_tx_enable: true
+    optional_signals: []
+    variant:
+      specification: TXPO=1, RXPO=3, CMODE=0
+      required_signals:
+      - name: SERCOM0/PAD/2
+        pad: PA10
+        label: TX
+      - name: SERCOM0/PAD/3
+        pad: PA11
+        label: RX
+    clocks:
+      domain_group:
+        nodes:
+        - name: Core
+          input: Generic clock generator 0
+          external: false
+          external_frequency: 0
+        - name: Slow
+          input: Generic clock generator 3
+          external: false
+          external_frequency: 0
+        configuration:
+          core_gclk_selection: Generic clock generator 0
+          slow_gclk_selection: Generic clock generator 3
   DELAY_0:
     user_label: DELAY_0
     definition: Atmel:SAMD21_Drivers:0.0.1::SAMD21G18A-MF::SysTick::driver_config_definition::Delay::HAL:Driver:Delay
@@ -447,13 +496,13 @@ drivers:
     functionality: System
     api: HAL:HPL:SYSCTRL
     configuration:
-      $input: 32768
-      $input_id: Generic clock generator 1
-      RESERVED_InputFreq: 32768
-      RESERVED_InputFreq_id: Generic clock generator 1
+      $input: 400000
+      $input_id: Generic clock generator 3
+      RESERVED_InputFreq: 400000
+      RESERVED_InputFreq_id: Generic clock generator 3
       _$freq_output_8MHz Internal Oscillator (OSC8M): 8000000
       _$freq_output_Digital Frequency Locked Loop (DFLL48M): 48005120
-      _$freq_output_External Crystal Oscillator 0.4-32MHz (XOSC): '400000'
+      _$freq_output_External Crystal Oscillator 0.4-32MHz (XOSC): 400000
       _$freq_output_Fractional Digital Phase Locked Loop (FDPLL96M): 585925000
       dfll48m_arch_bplckc: false
       dfll48m_arch_calibration: false
@@ -533,6 +582,18 @@ pads:
     definition: Atmel:SAMD21_Drivers:0.0.1::SAMD21G18A-MF::pad::PA02
     mode: Analog
     user_label: A0
+    configuration: null
+  PA10:
+    name: PA10
+    definition: Atmel:SAMD21_Drivers:0.0.1::SAMD21G18A-MF::pad::PA10
+    mode: Peripheral IO
+    user_label: PA10
+    configuration: null
+  PA11:
+    name: PA11
+    definition: Atmel:SAMD21_Drivers:0.0.1::SAMD21G18A-MF::pad::PA11
+    mode: Peripheral IO
+    user_label: PA11
     configuration: null
   BLUELED:
     name: PA17
