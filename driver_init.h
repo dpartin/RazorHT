@@ -21,37 +21,13 @@ extern "C" {
 #include <hal_io.h>
 #include <hal_sleep.h>
 
-#include <hal_ext_irq.h>
-
-#include <hal_usart_sync.h>
-
-#include <hal_i2c_m_sync.h>
-#include <hal_spi_m_sync.h>
-
 #include <hal_usart_sync.h>
 
 #include <hal_delay.h>
 
 #include "hal_usb_device.h"
 
-extern struct usart_sync_descriptor USART_0;
-
-extern struct i2c_m_sync_desc       I2C_0;
-extern struct spi_m_sync_descriptor SPI_0;
-
 extern struct usart_sync_descriptor EDBG_UART;
-
-void USART_0_PORT_init(void);
-void USART_0_CLOCK_init(void);
-void USART_0_init(void);
-
-void I2C_0_CLOCK_init(void);
-void I2C_0_init(void);
-void I2C_0_PORT_init(void);
-
-void SPI_0_PORT_init(void);
-void SPI_0_CLOCK_init(void);
-void SPI_0_init(void);
 
 void EDBG_UART_PORT_init(void);
 void EDBG_UART_CLOCK_init(void);
@@ -59,8 +35,8 @@ void EDBG_UART_init(void);
 
 void delay_driver_init(void);
 
-void USB_0_CLOCK_init(void);
-void USB_0_init(void);
+void TARGET_USB_CLOCK_init(void);
+void TARGET_USB_init(void);
 
 /**
  * \brief Perform system initialization, initialize pins and clocks for

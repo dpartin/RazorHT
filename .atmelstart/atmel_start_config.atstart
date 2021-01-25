@@ -18,114 +18,76 @@ board:
   device: SAMD21G18A-MF
 details: null
 application: null
-middlewares: {}
-drivers:
-  EXTERNAL_IRQ_0:
-    user_label: EXTERNAL_IRQ_0
-    definition: Atmel:SAMD21_Drivers:0.0.1::SAMD21G18A-MF::EIC::driver_config_definition::Default::HAL:Driver:Ext.IRQ
-    functionality: External_IRQ
-    api: HAL:Driver:Ext_IRQ
+middlewares:
+  USB_CHAPTER_9:
+    user_label: USB_CHAPTER_9
+    configuration: {}
+    definition: Atmel:USB:0.0.1::USB_Chapter_9
+    functionality: USB_Chapter_9
+    api: USB:Protocol:Core
+    dependencies: {}
+  USB_CLASS_CDC:
+    user_label: USB_CLASS_CDC
+    configuration: {}
+    definition: Atmel:USB:0.0.1::USB_Class_CDC
+    functionality: USB_Class_CDC
+    api: USB:Protocol:CDC
+    dependencies:
+      USB Chapter 9: USB_CHAPTER_9
+  USB_DEVICE_STACK_CORE_INSTANCE:
+    user_label: USB_DEVICE_STACK_CORE_INSTANCE
     configuration:
-      eic_arch_enable_irq_setting0: false
-      eic_arch_enable_irq_setting1: false
-      eic_arch_enable_irq_setting10: false
-      eic_arch_enable_irq_setting11: false
-      eic_arch_enable_irq_setting12: false
-      eic_arch_enable_irq_setting13: false
-      eic_arch_enable_irq_setting14: true
-      eic_arch_enable_irq_setting15: false
-      eic_arch_enable_irq_setting2: false
-      eic_arch_enable_irq_setting3: false
-      eic_arch_enable_irq_setting4: false
-      eic_arch_enable_irq_setting5: false
-      eic_arch_enable_irq_setting6: false
-      eic_arch_enable_irq_setting7: false
-      eic_arch_enable_irq_setting8: false
-      eic_arch_enable_irq_setting9: false
-      eic_arch_extinteo0: false
-      eic_arch_extinteo1: false
-      eic_arch_extinteo10: false
-      eic_arch_extinteo11: false
-      eic_arch_extinteo12: false
-      eic_arch_extinteo13: false
-      eic_arch_extinteo14: false
-      eic_arch_extinteo15: false
-      eic_arch_extinteo2: false
-      eic_arch_extinteo3: false
-      eic_arch_extinteo4: false
-      eic_arch_extinteo5: false
-      eic_arch_extinteo6: false
-      eic_arch_extinteo7: false
-      eic_arch_extinteo8: false
-      eic_arch_extinteo9: false
-      eic_arch_filten0: false
-      eic_arch_filten1: false
-      eic_arch_filten10: false
-      eic_arch_filten11: false
-      eic_arch_filten12: false
-      eic_arch_filten13: false
-      eic_arch_filten14: true
-      eic_arch_filten15: false
-      eic_arch_filten2: false
-      eic_arch_filten3: false
-      eic_arch_filten4: false
-      eic_arch_filten5: false
-      eic_arch_filten6: false
-      eic_arch_filten7: false
-      eic_arch_filten8: false
-      eic_arch_filten9: false
-      eic_arch_nmifilten: false
-      eic_arch_nmisense: No detection
-      eic_arch_sense0: No detection
-      eic_arch_sense1: No detection
-      eic_arch_sense10: No detection
-      eic_arch_sense11: No detection
-      eic_arch_sense12: No detection
-      eic_arch_sense13: No detection
-      eic_arch_sense14: No detection
-      eic_arch_sense15: No detection
-      eic_arch_sense2: No detection
-      eic_arch_sense3: No detection
-      eic_arch_sense4: No detection
-      eic_arch_sense5: No detection
-      eic_arch_sense6: No detection
-      eic_arch_sense7: No detection
-      eic_arch_sense8: No detection
-      eic_arch_sense9: No detection
-      eic_arch_wakeupen0: false
-      eic_arch_wakeupen1: false
-      eic_arch_wakeupen10: false
-      eic_arch_wakeupen11: false
-      eic_arch_wakeupen12: false
-      eic_arch_wakeupen13: false
-      eic_arch_wakeupen14: false
-      eic_arch_wakeupen15: false
-      eic_arch_wakeupen2: false
-      eic_arch_wakeupen3: false
-      eic_arch_wakeupen4: false
-      eic_arch_wakeupen5: false
-      eic_arch_wakeupen6: false
-      eic_arch_wakeupen7: false
-      eic_arch_wakeupen8: false
-      eic_arch_wakeupen9: false
-    optional_signals:
-    - identifier: EXTERNAL_IRQ_0:EXTINT/14
-      pad: PA14
-      mode: Enabled
-      configuration: null
-      definition: Atmel:SAMD21_Drivers:0.0.1::SAMD21G18A-MF::optional_signal_definition::EIC.EXTINT.14
-      name: EIC/EXTINT/14
-      label: EXTINT/14
-    variant: null
-    clocks:
-      domain_group:
-        nodes:
-        - name: EIC
-          input: Generic clock generator 0
-          external: false
-          external_frequency: 0
-        configuration:
-          eic_gclk_selection: Generic clock generator 0
+      usbd_hs_sp: false
+    definition: Atmel:USB:0.0.1::USB_Device_Core
+    functionality: USB_Device_Core
+    api: USB:Device:Core
+    dependencies:
+      USB Chapter 9: USB_CHAPTER_9
+      USB Device instance: TARGET_USB
+  USB_DEVICE_CDC_ACM_0:
+    user_label: USB_DEVICE_CDC_ACM_0
+    configuration:
+      usb_cdcd_acm_bcddevice: 256
+      usb_cdcd_acm_bcdusb: USB 2.0 version
+      usb_cdcd_acm_bconfigval: 1
+      usb_cdcd_acm_bmattri: Bus power supply, not support for remote wakeup
+      usb_cdcd_acm_bmaxpksz0: 64 bytes
+      usb_cdcd_acm_bmaxpower: 50
+      usb_cdcd_acm_bnumconfig: 1
+      usb_cdcd_acm_comm_baltset: 0
+      usb_cdcd_acm_comm_bifcnum: 0
+      usb_cdcd_acm_comm_iifc: 0
+      usb_cdcd_acm_comm_int_interval: 10
+      usb_cdcd_acm_comm_int_maxpksz: 64 bytes
+      usb_cdcd_acm_data_baltset: 0
+      usb_cdcd_acm_data_bifcnum: 1
+      usb_cdcd_acm_data_buckout_maxpksz: 64 bytes
+      usb_cdcd_acm_data_buckout_maxpksz_hs: 512 bytes
+      usb_cdcd_acm_data_builin_maxpksz: 64 bytes
+      usb_cdcd_acm_data_builin_maxpksz_hs: 512 bytes
+      usb_cdcd_acm_data_bulkin_epaddr: EndpointAddress = 0x81
+      usb_cdcd_acm_data_bulkout_epaddr: EndpointAddress = 0x01
+      usb_cdcd_acm_data_iifc: 0
+      usb_cdcd_acm_epaddr: EndpointAddress = 0x82
+      usb_cdcd_acm_iconfig_en: false
+      usb_cdcd_acm_iconfig_str: ''
+      usb_cdcd_acm_idproduct: 9220
+      usb_cdcd_acm_idvender: 1003
+      usb_cdcd_acm_imanufact_en: false
+      usb_cdcd_acm_imanufact_str: Atmel
+      usb_cdcd_acm_iproduct_en: false
+      usb_cdcd_acm_iproduct_str: CDC ACM Serial Bridge Demo
+      usb_cdcd_acm_iserialnum_en: false
+      usb_cdcd_acm_iserialnum_str: 123456789ABCDEF
+      usb_cdcd_acm_langid: '0x0409'
+      usb_cdcd_acm_str_en: false
+    definition: Atmel:USB:0.0.1::USB_Device_CDC_ACM
+    functionality: USB_Device_CDC_ACM
+    api: USB:Device:CDC_ACM
+    dependencies:
+      USB Device Stack Core Instance: USB_DEVICE_STACK_CORE_INSTANCE
+      USB Class CDC: USB_CLASS_CDC
+drivers:
   GCLK:
     user_label: GCLK
     definition: Atmel:SAMD21_Drivers:0.0.1::SAMD21G18A-MF::GCLK::driver_config_definition::GCLK::HAL:HPL:GCLK
@@ -256,139 +218,6 @@ drivers:
           external: false
           external_frequency: 0
         configuration: {}
-  USART_0:
-    user_label: USART_0
-    definition: Atmel:SAMD21_Drivers:0.0.1::SAMD21G18A-MF::SERCOM0::driver_config_definition::UART::HAL:Driver:USART.Sync
-    functionality: USART
-    api: HAL:Driver:USART_Sync
-    configuration:
-      usart_advanced: false
-      usart_arch_clock_mode: USART with internal clock
-      usart_arch_cloden: false
-      usart_arch_dbgstop: Keep running
-      usart_arch_dord: LSB is transmitted first
-      usart_arch_enc: No encoding
-      usart_arch_fractional: 0
-      usart_arch_ibon: false
-      usart_arch_lin_slave_enable: Disable
-      usart_arch_runstdby: false
-      usart_arch_sampa: 7-8-9 (3-4-5 8-bit over-sampling)
-      usart_arch_sampr: 16x arithmetic
-      usart_arch_sfde: false
-      usart_baud_rate: 115200
-      usart_character_size: 8 bits
-      usart_parity: No parity
-      usart_rx_enable: true
-      usart_stop_bit: One stop bit
-      usart_tx_enable: true
-    optional_signals: []
-    variant:
-      specification: TXPO=1, RXPO=3, CMODE=0
-      required_signals:
-      - name: SERCOM0/PAD/2
-        pad: PA10
-        label: TX
-      - name: SERCOM0/PAD/3
-        pad: PA11
-        label: RX
-    clocks:
-      domain_group:
-        nodes:
-        - name: Core
-          input: Generic clock generator 0
-          external: false
-          external_frequency: 0
-        - name: Slow
-          input: Generic clock generator 3
-          external: false
-          external_frequency: 0
-        configuration:
-          core_gclk_selection: Generic clock generator 0
-          slow_gclk_selection: Generic clock generator 3
-  I2C_0:
-    user_label: I2C_0
-    definition: Atmel:SAMD21_Drivers:0.0.1::SAMD21G18A-MF::SERCOM3::driver_config_definition::I2C.Master.Standard~2FFast-mode::HAL:Driver:I2C.Master.Sync
-    functionality: I2C
-    api: HAL:Driver:I2C_Master_Sync
-    configuration:
-      i2c_master_advanced: false
-      i2c_master_arch_dbgstop: Keep running
-      i2c_master_arch_inactout: Disabled
-      i2c_master_arch_lowtout: false
-      i2c_master_arch_mexttoen: false
-      i2c_master_arch_runstdby: false
-      i2c_master_arch_sdahold: 300-600ns hold time
-      i2c_master_arch_sexttoen: false
-      i2c_master_arch_trise: 215
-      i2c_master_baud_rate: 100000
-    optional_signals: []
-    variant:
-      specification: SDA=0, SCL=1
-      required_signals:
-      - name: SERCOM3/PAD/0
-        pad: PA22
-        label: SDA
-      - name: SERCOM3/PAD/1
-        pad: PA23
-        label: SCL
-    clocks:
-      domain_group:
-        nodes:
-        - name: Core
-          input: Generic clock generator 0
-          external: false
-          external_frequency: 0
-        - name: Slow
-          input: Generic clock generator 3
-          external: false
-          external_frequency: 0
-        configuration:
-          core_gclk_selection: Generic clock generator 0
-          slow_gclk_selection: Generic clock generator 3
-  SPI_0:
-    user_label: SPI_0
-    definition: Atmel:SAMD21_Drivers:0.0.1::SAMD21G18A-MF::SERCOM4::driver_config_definition::SPI.Master::HAL:Driver:SPI.Master.Sync
-    functionality: SPI
-    api: HAL:Driver:SPI_Master_Sync
-    configuration:
-      spi_master_advanced: false
-      spi_master_arch_cpha: Sample input on leading edge
-      spi_master_arch_cpol: SCK is low when idle
-      spi_master_arch_dbgstop: Keep running
-      spi_master_arch_dord: MSB first
-      spi_master_arch_ibon: In data stream
-      spi_master_arch_runstdby: false
-      spi_master_baud_rate: 50000
-      spi_master_character_size: 8 bits
-      spi_master_dummybyte: 511
-      spi_master_rx_enable: true
-    optional_signals: []
-    variant:
-      specification: TXPO=1, RXPO=0
-      required_signals:
-      - name: SERCOM4/PAD/0
-        pad: PA12
-        label: MISO
-      - name: SERCOM4/PAD/2
-        pad: PB10
-        label: MOSI
-      - name: SERCOM4/PAD/3
-        pad: PB11
-        label: SCK
-    clocks:
-      domain_group:
-        nodes:
-        - name: Core
-          input: Generic clock generator 0
-          external: false
-          external_frequency: 0
-        - name: Slow
-          input: Generic clock generator 3
-          external: false
-          external_frequency: 0
-        configuration:
-          core_gclk_selection: Generic clock generator 0
-          slow_gclk_selection: Generic clock generator 3
   EDBG_UART:
     user_label: EDBG_UART
     definition: Atmel:SAMD21_Drivers:0.0.1::SAMD21G18A-MF::SERCOM5::driver_config_definition::UART::HAL:Driver:USART.Sync
@@ -408,7 +237,7 @@ drivers:
       usart_arch_sampa: 7-8-9 (3-4-5 8-bit over-sampling)
       usart_arch_sampr: 16x arithmetic
       usart_arch_sfde: false
-      usart_baud_rate: 9600
+      usart_baud_rate: 115200
       usart_character_size: 8 bits
       usart_parity: No parity
       usart_rx_enable: true
@@ -750,7 +579,7 @@ drivers:
       dfll48m_arch_enable: true
       dfll48m_arch_fine: 512
       dfll48m_arch_llaw: false
-      dfll48m_arch_ondemand: true
+      dfll48m_arch_ondemand: false
       dfll48m_arch_qldis: false
       dfll48m_arch_runstdby: false
       dfll48m_arch_stable: false
@@ -815,8 +644,8 @@ drivers:
     variant: null
     clocks:
       domain_group: null
-  USB_0:
-    user_label: USB_0
+  TARGET_USB:
+    user_label: TARGET_USB
     definition: Atmel:SAMD21_Drivers:0.0.1::SAMD21G18A-MF::USB::driver_config_definition::USB.Device::HAL:Driver:USB.Device
     functionality: USB
     api: HAL:Driver:USB_Device
@@ -862,89 +691,53 @@ pads:
   A0:
     name: PA02
     definition: Atmel:SAMD21_Drivers:0.0.1::SAMD21G18A-MF::pad::PA02
-    mode: Analog
+    mode: Advanced
     user_label: A0
-    configuration: null
-  PB08:
+    configuration:
+      pad_direction: In
+      pad_function: B
+      pad_initial_level: Low
+      pad_pull_config: 'Off'
+  A1:
     name: PB08
     definition: Atmel:SAMD21_Drivers:0.0.1::SAMD21G18A-MF::pad::PB08
-    mode: Analog
-    user_label: PB08
-    configuration: null
-  D4_INT:
+    mode: Advanced
+    user_label: A1
+    configuration:
+      pad_direction: In
+      pad_function: B
+      pad_initial_level: Low
+      pad_pull_config: 'Off'
+  PA08:
     name: PA08
     definition: Atmel:SAMD21_Drivers:0.0.1::SAMD21G18A-MF::pad::PA08
     mode: Advanced
-    user_label: D4_INT
+    user_label: PA08
     configuration:
       pad_direction: Out
       pad_function: E
       pad_initial_level: Low
       pad_pull_config: 'Off'
-  D3_FSYNC:
+  PA09:
     name: PA09
     definition: Atmel:SAMD21_Drivers:0.0.1::SAMD21G18A-MF::pad::PA09
     mode: Advanced
-    user_label: D3_FSYNC
+    user_label: PA09
     configuration:
       pad_direction: Out
       pad_function: E
       pad_initial_level: Low
       pad_pull_config: 'Off'
-  PA10:
-    name: PA10
-    definition: Atmel:SAMD21_Drivers:0.0.1::SAMD21G18A-MF::pad::PA10
-    mode: Peripheral IO
-    user_label: PA10
-    configuration: null
-  PA11:
-    name: PA11
-    definition: Atmel:SAMD21_Drivers:0.0.1::SAMD21G18A-MF::pad::PA11
-    mode: Peripheral IO
-    user_label: PA11
-    configuration: null
-  PB10:
-    name: PB10
-    definition: Atmel:SAMD21_Drivers:0.0.1::SAMD21G18A-MF::pad::PB10
-    mode: Digital output
-    user_label: PB10
-    configuration: null
-  PB11:
-    name: PB11
-    definition: Atmel:SAMD21_Drivers:0.0.1::SAMD21G18A-MF::pad::PB11
-    mode: Digital output
-    user_label: PB11
-    configuration: null
-  PA12:
-    name: PA12
-    definition: Atmel:SAMD21_Drivers:0.0.1::SAMD21G18A-MF::pad::PA12
-    mode: Digital input
-    user_label: PA12
-    configuration: null
-  D2_SD_CD:
-    name: PA14
-    definition: Atmel:SAMD21_Drivers:0.0.1::SAMD21G18A-MF::pad::PA14
-    mode: Digital input
-    user_label: D2_SD_CD
-    configuration: null
-  BLUELED:
+  LED:
     name: PA17
     definition: Atmel:SAMD21_Drivers:0.0.1::SAMD21G18A-MF::pad::PA17
-    mode: Digital output
-    user_label: BLUELED
-    configuration: null
-  PA22:
-    name: PA22
-    definition: Atmel:SAMD21_Drivers:0.0.1::SAMD21G18A-MF::pad::PA22
-    mode: I2C
-    user_label: PA22
-    configuration: null
-  PA23:
-    name: PA23
-    definition: Atmel:SAMD21_Drivers:0.0.1::SAMD21G18A-MF::pad::PA23
-    mode: I2C
-    user_label: PA23
-    configuration: null
+    mode: Advanced
+    user_label: LED
+    configuration:
+      pad_direction: Out
+      pad_function: Auto
+      pad_initial_level: Low
+      pad_pull_config: 'Off'
   PA24:
     name: PA24
     definition: Atmel:SAMD21_Drivers:0.0.1::SAMD21G18A-MF::pad::PA24
@@ -957,16 +750,16 @@ pads:
     mode: Advanced
     user_label: PA25
     configuration: null
-  PB22:
+  EDBG_UART_TX:
     name: PB22
     definition: Atmel:SAMD21_Drivers:0.0.1::SAMD21G18A-MF::pad::PB22
     mode: Peripheral IO
-    user_label: PB22
+    user_label: EDBG_UART_TX
     configuration: null
-  PB23:
+  EDBG_UART_RX:
     name: PB23
     definition: Atmel:SAMD21_Drivers:0.0.1::SAMD21G18A-MF::pad::PB23
     mode: Peripheral IO
-    user_label: PB23
+    user_label: EDBG_UART_RX
     configuration: null
 toolchain_options: []
