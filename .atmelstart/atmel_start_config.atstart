@@ -87,6 +87,14 @@ middlewares:
     dependencies:
       USB Device Stack Core Instance: USB_DEVICE_STACK_CORE_INSTANCE
       USB Class CDC: USB_CLASS_CDC
+  STDIO_REDIRECT_0:
+    user_label: STDIO_REDIRECT_0
+    configuration: {}
+    definition: Atmel:STDIO_redirect:0.0.1::STDIO_Redirect
+    functionality: STDIO_Redirect
+    api: STDIO:Redirect:IO
+    dependencies:
+      Target IO: TARGET_IO
 drivers:
   GCLK:
     user_label: GCLK
@@ -218,9 +226,9 @@ drivers:
           external: false
           external_frequency: 0
         configuration: {}
-  EDBG_UART:
-    user_label: EDBG_UART
-    definition: Atmel:SAMD21_Drivers:0.0.1::SAMD21G18A-MF::SERCOM5::driver_config_definition::UART::HAL:Driver:USART.Sync
+  TARGET_IO:
+    user_label: TARGET_IO
+    definition: Atmel:SAMD21_Drivers:0.0.1::SAMD21G18A-MF::SERCOM0::driver_config_definition::UART::HAL:Driver:USART.Sync
     functionality: USART
     api: HAL:Driver:USART_Sync
     configuration:
@@ -237,7 +245,7 @@ drivers:
       usart_arch_sampa: 7-8-9 (3-4-5 8-bit over-sampling)
       usart_arch_sampr: 16x arithmetic
       usart_arch_sfde: false
-      usart_baud_rate: 115200
+      usart_baud_rate: 9600
       usart_character_size: 8 bits
       usart_parity: No parity
       usart_rx_enable: true
@@ -247,11 +255,11 @@ drivers:
     variant:
       specification: TXPO=1, RXPO=3, CMODE=0
       required_signals:
-      - name: SERCOM5/PAD/2
-        pad: PB22
+      - name: SERCOM0/PAD/2
+        pad: PA10
         label: TX
-      - name: SERCOM5/PAD/3
-        pad: PB23
+      - name: SERCOM0/PAD/3
+        pad: PA11
         label: RX
     clocks:
       domain_group:
@@ -728,6 +736,18 @@ pads:
       pad_function: E
       pad_initial_level: Low
       pad_pull_config: 'Off'
+  PA10:
+    name: PA10
+    definition: Atmel:SAMD21_Drivers:0.0.1::SAMD21G18A-MF::pad::PA10
+    mode: Peripheral IO
+    user_label: PA10
+    configuration: null
+  PA11:
+    name: PA11
+    definition: Atmel:SAMD21_Drivers:0.0.1::SAMD21G18A-MF::pad::PA11
+    mode: Peripheral IO
+    user_label: PA11
+    configuration: null
   LED:
     name: PA17
     definition: Atmel:SAMD21_Drivers:0.0.1::SAMD21G18A-MF::pad::PA17
@@ -749,17 +769,5 @@ pads:
     definition: Atmel:SAMD21_Drivers:0.0.1::SAMD21G18A-MF::pad::PA25
     mode: Advanced
     user_label: PA25
-    configuration: null
-  EDBG_UART_TX:
-    name: PB22
-    definition: Atmel:SAMD21_Drivers:0.0.1::SAMD21G18A-MF::pad::PB22
-    mode: Peripheral IO
-    user_label: EDBG_UART_TX
-    configuration: null
-  EDBG_UART_RX:
-    name: PB23
-    definition: Atmel:SAMD21_Drivers:0.0.1::SAMD21G18A-MF::pad::PB23
-    mode: Peripheral IO
-    user_label: EDBG_UART_RX
     configuration: null
 toolchain_options: []

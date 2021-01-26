@@ -13,27 +13,27 @@
 #include <hpl_gclk_base.h>
 #include <hpl_pm_base.h>
 
-struct usart_sync_descriptor EDBG_UART;
+struct usart_sync_descriptor TARGET_IO;
 
-void EDBG_UART_PORT_init(void)
+void TARGET_IO_PORT_init(void)
 {
 
-	gpio_set_pin_function(EDBG_UART_TX, PINMUX_PB22D_SERCOM5_PAD2);
+	gpio_set_pin_function(PA10, PINMUX_PA10C_SERCOM0_PAD2);
 
-	gpio_set_pin_function(EDBG_UART_RX, PINMUX_PB23D_SERCOM5_PAD3);
+	gpio_set_pin_function(PA11, PINMUX_PA11C_SERCOM0_PAD3);
 }
 
-void EDBG_UART_CLOCK_init(void)
+void TARGET_IO_CLOCK_init(void)
 {
-	_pm_enable_bus_clock(PM_BUS_APBC, SERCOM5);
-	_gclk_enable_channel(SERCOM5_GCLK_ID_CORE, CONF_GCLK_SERCOM5_CORE_SRC);
+	_pm_enable_bus_clock(PM_BUS_APBC, SERCOM0);
+	_gclk_enable_channel(SERCOM0_GCLK_ID_CORE, CONF_GCLK_SERCOM0_CORE_SRC);
 }
 
-void EDBG_UART_init(void)
+void TARGET_IO_init(void)
 {
-	EDBG_UART_CLOCK_init();
-	usart_sync_init(&EDBG_UART, SERCOM5, (void *)NULL);
-	EDBG_UART_PORT_init();
+	TARGET_IO_CLOCK_init();
+	usart_sync_init(&TARGET_IO, SERCOM0, (void *)NULL);
+	TARGET_IO_PORT_init();
 }
 
 void delay_driver_init(void)
@@ -353,7 +353,7 @@ void system_init(void)
 	                      // <GPIO_PIN_FUNCTION_H"> H
 	                      GPIO_PIN_FUNCTION_B);
 
-	EDBG_UART_init();
+	TARGET_IO_init();
 
 	delay_driver_init();
 

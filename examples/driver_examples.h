@@ -12,7 +12,7 @@
 extern "C" {
 #endif
 
-void EDBG_UART_example(void);
+void TARGET_IO_example(void);
 
 void delay_example(void);
 

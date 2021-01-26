@@ -27,11 +27,11 @@ extern "C" {
 
 #include "hal_usb_device.h"
 
-extern struct usart_sync_descriptor EDBG_UART;
+extern struct usart_sync_descriptor TARGET_IO;
 
-void EDBG_UART_PORT_init(void);
-void EDBG_UART_CLOCK_init(void);
-void EDBG_UART_init(void);
+void TARGET_IO_PORT_init(void);
+void TARGET_IO_CLOCK_init(void);
+void TARGET_IO_init(void);
 
 void delay_driver_init(void);
 
